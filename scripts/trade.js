@@ -77,7 +77,7 @@ const dualTrade = async (router1,router2,baseToken,token2,amount) => {
   try {
     inTrade = true;
     console.log('> Making dualTrade...');
-    const tx = await arb.connect(owner).dualDexTrade(router1, router2, baseToken, token2, amount); //{ gasPrice: 1000000000003, gasLimit: 500000 }
+    const tx = await arb.connect(owner).dualDexTrade(router1, router2, baseToken, token2, amount,{ gasPrice: 1050000000, gasLimit: 1000000 }); //{ gasPrice: 1000000000003, gasLimit: 500000 }
     await tx.wait();
     inTrade = false;
     await lookForDualTrade();
@@ -96,7 +96,7 @@ const setup = async () => {
   balances = {};
   for (let i = 0; i < config.baseAssets.length; i++) {
     const asset = config.baseAssets[i];
-    const interface = await ethers.getContractFactory('WETH9');
+    const interface = await ethers.getContractFactory('WBCH');
     const assetToken = await interface.attach(asset.address);
     const balance = await assetToken.balanceOf(config.arbContract);
     console.log(asset.sym, balance.toString());
@@ -114,7 +114,7 @@ const logResults = async () => {
   console.log(`############# LOGS #############`);
     for (let i = 0; i < config.baseAssets.length; i++) {
     const asset = config.baseAssets[i];
-    const interface = await ethers.getContractFactory('WETH9');
+    const interface = await ethers.getContractFactory('WBCH');
     const assetToken = await interface.attach(asset.address);
     balances[asset.address].balance = await assetToken.balanceOf(config.arbContract);
     const diff = balances[asset.address].balance.sub(balances[asset.address].startBalance);

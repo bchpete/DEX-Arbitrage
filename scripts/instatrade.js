@@ -78,7 +78,7 @@ const setup = async () => {
   balances = {};
   for (let i = 0; i < config.baseAssets.length; i++) {
     const asset = config.baseAssets[i];
-    const interface = await ethers.getContractFactory('WETH9');
+    const interface = await ethers.getContractFactory('WBCH');
     const assetToken = await interface.attach(asset.address);
     const balance = await assetToken.balanceOf(config.arbContract);
     console.log(asset.sym, balance.toString());
@@ -96,7 +96,7 @@ const logResults = async () => {
   console.log(`############# LOGS #############`);
     for (let i = 0; i < config.baseAssets.length; i++) {
     const asset = config.baseAssets[i];
-    const interface = await ethers.getContractFactory('WETH9');
+    const interface = await ethers.getContractFactory('WBCH');
     const assetToken = await interface.attach(asset.address);
     balances[asset.address].balance = await assetToken.balanceOf(config.arbContract);
     const diff = balances[asset.address].balance.sub(balances[asset.address].startBalance);

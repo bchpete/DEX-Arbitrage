@@ -12,7 +12,7 @@ const main = async () => {
   console.log(`Owner: ${owner.address}`);
   const IArb = await ethers.getContractFactory('Arb');
   arb = await IArb.attach(config.arbContract);
-	const interface = await ethers.getContractFactory('WETH9');
+	const interface = await ethers.getContractFactory('WBCH');
   for (let i = 0; i < config.baseAssets.length; i++) {
     const asset = config.baseAssets[i];
 		const tokenAsset = await interface.attach(asset.address);

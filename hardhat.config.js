@@ -11,14 +11,14 @@ module.exports = {
       accounts: [process.env.privateKey],
     },
     fantom: {
-      url: `https://rpc.ftm.tools/`,
+      url: `https://smartbch.fountainhead.cash/mainnet`,
       accounts: [process.env.privateKey],
     },
   },
   solidity: {
     compilers: [
       { version: "0.8.7" },
-      { version: "0.7.6" },
+      { version: "0.4.18" },
       { version: "0.6.6" }
     ]
   },

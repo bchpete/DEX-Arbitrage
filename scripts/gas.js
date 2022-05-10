@@ -9,8 +9,10 @@ if (network === 'fantom') config = require('./../config/fantom.json');
 
 const main = async () => {
 	[owner] = await ethers.getSigners();
-	const gasPrice = await ethers.provider.getGasPrice()
-	//{gasPrice: 1000000000001}
+	function getGasPrice() {
+		return ethers.BigNumber.from(1050000000)
+	  }	
+	const gasPrice = getGasPrice()
 	console.log(`Gas Price: ${gasPrice.toString()}`);
 	const recommendedPrice = gasPrice.mul(10).div(9);
 	console.log(`Recommended Price: ${recommendedPrice.toString()}`);
